@@ -4,9 +4,12 @@ require('dotenv').config();
 
 // 👇 Initialize database & tables
 require('./models/userModel');
+require('./models/taskModel');
 
 // 👇 Import routes
 const authRoutes = require('./routes/authRoutes');
+const taskRoutes = require('./routes/taskRoutes');
+
 
 const app = express();
 
@@ -21,6 +24,8 @@ app.get('/', (req, res) => {
 
 // Routes
 app.use('/auth', authRoutes);
+app.use('/tasks', taskRoutes);
+
 
 // Server
 const PORT = process.env.PORT || 5000;
