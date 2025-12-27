@@ -27,3 +27,36 @@ exports.createTask = (req, res) => {
     }
   );
 };
+
+exports.getTasks = (req, res) => {
+  const userId = req.user.id;
+
+  const search = req.query.search || '';
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 5;
+  const offset = (page - 1) * limit;
+
+  const query = `
+    SELECT * FROM tasks
+    WHERE user_id = ? AND title LIKE ?
+    ORDER BY created_at DESC
+    LIMIT ? OFFSET ?
+  `;
+
+  db.all(
+    query,
+    [userId, `%${search}%`, limit, offset],
+    (err, rows) => {
+      if (err) {
+        return res.status(500).json({ message: 'Failed to fetch tasks' });
+      }
+
+      res.json({
+        page,
+        limit,
+        tasks: rows
+      });
+    }
+  );
+};
+
