@@ -91,7 +91,6 @@ function Dashboard() {
     fetchTasks();
   };
 
-  // Delete task
  // 🔹 Delete task with confirmation
 const deleteTask = async (id) => {
   const confirmDelete = window.confirm(
