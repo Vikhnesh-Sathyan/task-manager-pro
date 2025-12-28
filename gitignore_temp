@@ -12,3 +12,4 @@ backend/*.db
 
 # Logs
 npm-debug.log*
+
