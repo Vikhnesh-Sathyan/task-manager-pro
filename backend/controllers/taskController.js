@@ -61,32 +61,26 @@ exports.getTasks = (req, res) => {
 };
 
 exports.updateTask = (req, res) => {
+  const { status } = req.body;
   const taskId = req.params.id;
   const userId = req.user.id;
-  const { title, description, status } = req.body;
 
   const query = `
     UPDATE tasks
-    SET title = ?, description = ?, status = ?
+    SET status = ?
     WHERE id = ? AND user_id = ?
   `;
 
-  db.run(
-    query,
-    [title, description, status, taskId, userId],
-    function (err) {
-      if (err) {
-        return res.status(500).json({ message: 'Failed to update task' });
-      }
-
-      if (this.changes === 0) {
-        return res.status(404).json({ message: 'Task not found' });
-      }
-
-      res.json({ message: 'Task updated successfully' });
+  db.run(query, [status, taskId, userId], function (err) {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Failed to update task' });
     }
-  );
+
+    res.json({ message: 'Task updated successfully' });
+  });
 };
+
 
 exports.deleteTask = (req, res) => {
   const taskId = req.params.id;
@@ -107,6 +101,8 @@ exports.deleteTask = (req, res) => {
     }
 
     res.json({ message: 'Task deleted successfully' });
+
+    
   });
 };
 
