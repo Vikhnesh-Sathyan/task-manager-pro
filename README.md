@@ -1,7 +1,8 @@
 
-A full-stack Task Manager application.
+# Task Manager – Full Stack Application
 
-## Tech Stack
+
+## 🚀 Tech Stack
 - Frontend: ReactJS
 - Backend: Node.js, Express
 - Database: SQLite
@@ -9,7 +10,7 @@ A full-stack Task Manager application.
 
 ---
 
-## Features
+## ✨ Features
 - User Registration & Login
 - JWT Authentication
 - Create, Read, Update, Delete Tasks
@@ -21,9 +22,8 @@ A full-stack Task Manager application.
 
 ---
 
-## Project Structure
-backend/
-frontend/
+## 🧑‍💻 Project Structure
+
 
 cd backend
 npm install
