@@ -69,7 +69,6 @@ function Dashboard() {
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState('');
 
-  // Fetch tasks
   const fetchTasks = async () => {
     try {
       const res = await API.get('/tasks');
